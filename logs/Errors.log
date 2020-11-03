@@ -1,0 +1,8 @@
+[Oct/30/2020 | 06:03:43pm] Error: 2, doLogin(): Couldn't fetch mysqli in /var/www/html/php/testRabbitMQServer.php at line 22. 
+[Oct/30/2020 | 06:03:43pm] Error: 2, doLogin(): Couldn't fetch mysqli in /var/www/html/php/testRabbitMQServer.php at line 22. 
+[Oct/30/2020 | 06:03:43pm] Error: 2, mysqli::query(): Couldn't fetch mysqli in /var/www/html/php/testRabbitMQServer.php at line 33. 
+[Oct/30/2020 | 06:03:43pm] Error: 2, mysqli::query(): Couldn't fetch mysqli in /var/www/html/php/testRabbitMQServer.php at line 33. 
+[Oct/30/2020 | 06:03:43pm] Error: 2, mysqli_fetch_array() expects parameter 1 to be mysqli_result, null given in /var/www/html/php/testRabbitMQServer.php at line 34. 
+[Oct/30/2020 | 06:03:43pm] Error: 2, mysqli_fetch_array() expects parameter 1 to be mysqli_result, null given in /var/www/html/php/testRabbitMQServer.php at line 34. 
+[Oct/30/2020 | 06:03:43pm] Error: 8, Trying to get property 'num_rows' of non-object in /var/www/html/php/testRabbitMQServer.php at line 38. 
+[Oct/30/2020 | 06:03:43pm] Error: 8, Trying to get property 'num_rows' of non-object in /var/www/html/php/testRabbitMQServer.php at line 38. 

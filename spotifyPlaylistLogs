@@ -1,0 +1,91 @@
+#!/usr/bin/python3
+import spotipy
+from spotipy.oauth2 import SpotifyClientCredentials
+
+client_id = 'cf614c21c9514eacbf313f4fc0824b52'
+client_secret = '14a6d270f63940ffaff641572e507917'
+
+client_credentials_manager = SpotifyClientCredentials(client_id, client_secret)
+sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
+
+
+while True:
+  def getTrackIDs(user, playlist_id):
+      ids = []
+      playlist = sp.user_playlist(user, playlist_id)
+      for item in playlist['tracks']['items']:
+          track = item['track']
+          ids.append(track['id'])
+      return ids
+
+  #ids = getTrackIDs(Username,playlistURL) 
+  #my sample playlist below
+  ids = getTrackIDs('ooPb2O_bQJ-deWxt9dvy7Q', '0GHWgHTiN2NpVO2uUqugYq')
+
+  def getTrackFeatures(id):
+    meta = sp.track(id)
+    features = sp.audio_features(id)
+
+    # meta
+    name = meta['name']
+    album = meta['album']['name']
+    artist = meta['album']['artists'][0]['name']
+    release_date = meta['album']['release_date']
+    #length = meta['duration_ms']
+    #popularity = meta['popularity']
+    track = [name, album, artist, release_date]
+    return track
+  
+    # loop over track ids 
+  tracks = []
+  for i in range(len(ids)):
+    #time.sleep(.5)
+    track = getTrackFeatures(ids[i])
+    tracks.append(track)
+
+  import time 
+  from time import ctime
+
+  orgNumTracksOnPlaylist = len(tracks)
+    
+  time.sleep(5)   #To make this refresh & run every x amount of seconds
+
+  def updateTrackIDs(user, playlist_id):
+      updateIds = []
+      playlist = sp.user_playlist(user, playlist_id)
+      for item in playlist['tracks']['items']:
+          track = item['track']
+          updateIds.append(track['id'])
+      return  updateIds
+
+  updateIds = updateTrackIDs('ooPb2O_bQJ-deWxt9dvy7Q', '0GHWgHTiN2NpVO2uUqugYq')
+
+  #Repeat this section of code again to refresh tracks list
+    # loop over track ids 
+  newTracks = []
+  for i in range(len(updateIds)):
+    track = getTrackFeatures(updateIds[i])
+    newTracks.append(track)
+
+  newNumTracksOnPlaylist = len(newTracks)
+
+  def runLogs():
+    f = open("spotifyLogs.txt","a+")
+    if newNumTracksOnPlaylist == orgNumTracksOnPlaylist + 1:  
+      f.write(ctime() + " one song has been added to playlist")
+    elif newNumTracksOnPlaylist - orgNumTracksOnPlaylist >= 2:
+      f.write(ctime() + " multiple songs have been added to playlsit")
+    elif newNumTracksOnPlaylist == orgNumTracksOnPlaylist - 1: 
+      f.write(ctime() + " one song has been removed from playlist")
+    elif orgNumTracksOnPlaylist - newNumTracksOnPlaylist >= 2:
+      f.write(ctime() + " multiple songs have been removed from playlist")
+    #f.write("\n")
+    #To print Current number of Songs on playlist
+    f.write("; Current number of songs on playlist: " + str(newNumTracksOnPlaylist) + "\n" )
+    f.close()
+  if orgNumTracksOnPlaylist - newNumTracksOnPlaylist != 0 or newNumTracksOnPlaylist - orgNumTracksOnPlaylist != 0: 
+    runLogs()
+
+'''
+This Script refreshes every 5 seconds and detects if a song was added or removed to a playlist in those five seconds or if multiple songs were added or removed in those 5 seconds. It writes the timestamp of the transaction to a "spotifyLogs.txt" file which is on the same directory that this script if one when executed.
+'''

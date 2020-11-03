@@ -1,0 +1,100 @@
+#!/usr/bin/python3 
+
+import spotipy
+from spotipy.oauth2 import SpotifyClientCredentials
+#import pandas as pd
+import os
+import re
+
+client_id = 'cf614c21c9514eacbf313f4fc0824b52'
+client_secret = '14a6d270f63940ffaff641572e507917'
+
+client_credentials_manager = SpotifyClientCredentials(client_id, client_secret)
+sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
+
+def get_playlist_tracks(username, playlist_id):
+  ids = []
+  results = sp.user_playlist_tracks(username, playlist_id)
+  tracks = results['items']
+
+  while results['next']:
+    results = sp.next(results)
+    tracks.extend(results['items'])
+
+  for i in range(len(tracks)):
+    ids.append(tracks[i]['track']['id'])
+
+  return ids
+
+#(username,Playlist ID)
+
+#My playlist
+#ids = get_playlist_tracks('ooPb2O_bQJ-deWxt9dvy7Q','27JGCrPD1Va4zF1JJYpa58')
+
+#Kevin's Long Playlist
+#ids = get_playlist_tracks('21leaxdk6kwmltvsjfbq4ll3y','0OnLZ2cBoOwthy99A07nOC')
+
+#Kevin's Short PLaylist
+ids = get_playlist_tracks('21leaxdk6kwmltvsjfbq4ll3y','7IPtbSg1IGjR61AGOq74Sh')
+
+def getTrackFeatures(songId):
+  meta = sp.track(songId)
+  features = sp.audio_features(songId)
+
+  songKey = songId
+  # meta
+  name = meta['name']
+  album = meta['album']['name']
+  artist = meta['album']['artists'][0]['name']
+  release_date = meta['album']['release_date']
+  length = meta['duration_ms']
+  popularity = meta['popularity']
+  demoLink = meta['preview_url']
+
+  
+  # features
+  danceability = features[0]['danceability']
+  energy = features[0]['energy']
+  key = features[0]['key']
+  mode = features[0]['mode']
+  
+  #extra features in case we want to use them
+  '''
+  acousticness = features[0]['acousticness']
+  instrumentalness = features[0]['instrumentalness']
+  liveness = features[0]['liveness']
+  loudness = features[0]['loudness']
+  speechiness = features[0]['speechiness']
+  tempo = features[0]['tempo']
+  time_signature = features[0]['time_signature']
+  '''
+  track = [songKey, name, album, artist, release_date, length, popularity, danceability, energy, key, mode, demoLink]
+
+  trackList=[]
+  for element in track: 
+    if type(element) == str:
+        element = re.sub("'","''",element)
+        trackList.append(element)
+    else:
+        trackList.append(element)
+
+
+  return trackList
+
+  # loop over track ids
+
+print(len(ids))
+
+songCnt = 0
+for i in range(len(ids)):
+  track = getTrackFeatures(ids[i])
+  os.system('/usr/bin/php testRabbitMQClient.php ' '"' + track[0] + '"' ' ' '"' + str(track[1]) + '"' ' ' '"' + str(track[2]) + '"' ' ' '"' + str(track[3]) + '"' ' ' '"' + track[4] + '"' ' ' '"' + str(track[5]) + '"' ' ' '"' + str(track[6]) + '"' ' ' '"' + str(track[7]) + '"' ' ' '"' + str(track[8]) + '"' ' ' '"' + str(track[9]) + '"' ' ' '"' + str(track[10]) + '"' ' ' '"' + str(track[11]) + '"')
+  
+  songCnt += 1
+  print("\n")
+  print(songCnt)
+  print(track[1])
+
+'''
+This Script collects all tracks from spotify Playlist and sends through RabbitMQ to the Database and stores them correctly. It can send any amount of songs.  
+'''
