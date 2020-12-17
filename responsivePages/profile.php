@@ -245,7 +245,7 @@ elseif(isset($_GET['profileSearch'])){
 <div class="w3-row">
   <div class="w3-quarter">
 	<?php
-	echo "<h3><u>Below is $userProfile's playlist.</u></h3>";
+	echo "<h3><u>Below(To the right for mobile) is $userProfile's playlist.</u></h3>";
 	$outputArray = retrieveProfileSongs($_GET['username']);
         ?>
     </div>
