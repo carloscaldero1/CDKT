@@ -37,7 +37,7 @@ if(isset($_SESSION['username'])){
 		echo "<br><b>Username does not exist. Please try again.</b><br>";
 	}
 
-	echo '<div class="w3-quarter "> <a href="homepage.php">Homepage</a></div>';
+	echo '<div class="w3-quarter "> <br><a href="profile.php">Your Profile</a></div>';
 
 	echo '<div class="w3-quarter"> <a href="songDiscovery.php">Song Discovery</a></div>';
 
