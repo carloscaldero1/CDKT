@@ -6,6 +6,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <center>
+
+<div class="w3-row w3-black">
 <?php
 
 date_default_timezone_set('America/New_York');
@@ -30,7 +32,7 @@ if(!isset($_SESSION['username'])){
 }
 
 if((isset($_SESSION['username']) and (!isset($_GET['profileSearch']))) or ($_SESSION['username'] == $_GET['username']) or (isset($_GET['recommendations'])) or (isset($_GET['Add']))){
-  <div class="w3-row w3-black">
+  
 	echo '<div class="w3-quarter w3-black"> <a href="homepage.php">Homepage</a></div>';
 
 	echo '<div class="w3-quarter w3-black"> <a href="songDiscovery.php">Song Discovery</a></div>';
@@ -38,10 +40,11 @@ if((isset($_SESSION['username']) and (!isset($_GET['profileSearch']))) or ($_SES
 	echo '<div class="w3-quarter w3-black"><a href="songSearcher.php">Song Search</a></div>';
 
 	echo '<div class="w3-quarter w3-black"> <a href="logout.php?logout">Logout</a></div>';
-  </div>
+ 
   
   
 	?>
+  </div>
   <div class="w3-container w3-cyan">
   <h1><u>Welcome to Your Profile Page</u></h1></div>
   <div class="w3-row">
@@ -178,16 +181,16 @@ if((isset($_SESSION['username']) and (!isset($_GET['profileSearch']))) or ($_SES
 		<textarea name='message' rows='5' cols='50'></textarea>
 		<br><button type='submit' name='commentSubmit'>Comment</button>
 	</form>
-
+ 
+ </div>
+</div>
+<div class="w3-row w3-black">
 	<?php
 }
-  </div>
-</div>
-
+ 
 elseif(isset($_GET['profileSearch'])){
 	$userProfile = $_GET['username'];
 
-<div class="w3-row w3-black">
 	echo '<div class="w3-quarter w3-black"><a href="homepage.php">Homepage</a></div>';
 	echo '<div class="w3-quarter w3-black"><a href="songDiscovery.php">Song Discovery</a></div>';
 	echo '<div class="w3-quarter w3-black"><a href="songSearcher.php">Song Search</a></div>';
@@ -197,9 +200,9 @@ elseif(isset($_GET['profileSearch'])){
 
 <div class="w3-container w3-cyan">
 <h1><u>Welcome to <?php echo $_GET['username'];?>'s Profile Page</u></h1></div>
-	<?php
-  <div class="w3-row">
+<div class="w3-row">
     <div class="w3-quarter w3-pink">
+	<?php
 	echo "<h3><u>Below(right for mobile layout) is $userProfile's playlist.</u></h3>";
 	$outputArray = retrieveProfileSongs($_GET['username']);
         ?>
@@ -265,10 +268,10 @@ elseif(isset($_GET['profileSearch'])){
   </div>
 </div>
 
+<div class="w3-row">
 <?php
 }
 
-<div class="w3-row">
 echo '<div class="w3-quarter w3-black"><br><a href="homepage.php">Homepage</a></div>';
 
 echo '<div class="w3-quarter w3-black"><a href="songDiscovery.php">Song Discovery</a></div>';
@@ -281,4 +284,5 @@ echo '<div class="w3-quarter w3-black"><a href="logout.php?logout">Logout</a></d
 </div>
 </center>
 </body>
+</html>
 </html>
