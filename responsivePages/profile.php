@@ -93,7 +93,9 @@ if((isset($_SESSION['username']) and (!isset($_GET['profileSearch']))) or ($_SES
 	$outputArray = retrieveProfileSongs($_SESSION['username']);
 	?>
 	</div>
-  <div class="w3-threequarter w3-dark-grey">
+  <div class="w3-threequarter w3-dark-grey">{
+  align: left;
+}
 	<table border=2>
 	
 	<tr>
