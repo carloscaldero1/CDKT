@@ -11,7 +11,7 @@ body {
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <center>
 
-<div class="w3-quarter w3-black">
+<div class="w3-row w3-black">
 <?php
 
 date_default_timezone_set('America/New_York');
@@ -75,7 +75,7 @@ if((isset($_SESSION['username']) and (!isset($_GET['profileSearch']))) or ($_SES
 </div>
   <div class="w3-row">
   <div class="w3-quarter">
-	<h3><u>Your Playlist</h3></u>
+	<h7><u>Your Playlist</h7></u>
   
   <?php
 
@@ -140,7 +140,7 @@ if((isset($_SESSION['username']) and (!isset($_GET['profileSearch']))) or ($_SES
 </div>
 <div class="w3-row">
   <div class="w3-quarter">
-	<h3><u>Songs We Think You'd Like Based on Your Playlist</u></h3>
+	<h7><u>Songs We Think You'd Like Based on Your Playlist</u></h7>
 
 	<?php
 	$recommendationArray = getRecommendedSongs($_SESSION['username']);
@@ -221,7 +221,7 @@ if((isset($_SESSION['username']) and (!isset($_GET['profileSearch']))) or ($_SES
  
  
 </div>
-<div class="w3-quarter w3-black">
+<div class="w3-row w3-black">
 	<?php
 }
 
@@ -247,7 +247,7 @@ elseif(isset($_GET['profileSearch'])){
 <div class="w3-row">
   <div class="w3-quarter">
 	<?php
-	echo "<h3><u>Below(To the right for mobile) is $userProfile's playlist.</u></h3>";
+	echo "<h7><u>Below(To the right for mobile) is $userProfile's playlist.</u></h7>";
 	$outputArray = retrieveProfileSongs($_GET['username']);
         ?>
     </div>
@@ -311,7 +311,7 @@ elseif(isset($_GET['profileSearch'])){
         </form>
  
 </div>
-<div class="w3-quarter w3-black">
+<div class="w3-row w3-black">
 <?php
 	}
 
