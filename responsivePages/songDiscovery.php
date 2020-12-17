@@ -68,7 +68,7 @@ for($i=0; $i<$len; $i++){ ?>
 
 <hr>
 
-<div class="w3-quarter w3-black">
+<div class="w3-row w3-black">
 
 <?php
 
