@@ -11,7 +11,7 @@ body {
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <center>
 
-<div class="w3-row w3-black">
+<div class="w3-quarter w3-black">
 <?php
 
 date_default_timezone_set('America/New_York');
@@ -52,7 +52,7 @@ if((isset($_SESSION['username']) and (!isset($_GET['profileSearch']))) or ($_SES
   
   
 <div class="w3-row">
-  <div class="half">
+  <div class="w3-half">
 	<?php
 
 	$privacy = privacyGet($_SESSION['username']);
@@ -66,7 +66,7 @@ if((isset($_SESSION['username']) and (!isset($_GET['profileSearch']))) or ($_SES
 
 	?>
   </div>
-  <div class="half">
+  <div class="w3-half">
 	<form action="./profilePrivacy.php">
 	<input type="submit" name="public" value="Make Profile Public">
 	<input type="submit" name="private" value="Make Profile Private">
@@ -219,7 +219,7 @@ if((isset($_SESSION['username']) and (!isset($_GET['profileSearch']))) or ($_SES
  
  
 </div>
-<div class="w3-row w3-black">
+<div class="w3-quarter w3-black">
 	<?php
 }
 
@@ -309,7 +309,7 @@ elseif(isset($_GET['profileSearch'])){
         </form>
  
 </div>
-<div class="w3-row w3-black">
+<div class="w3-quarter w3-black">
 <?php
 	}
 
