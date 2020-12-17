@@ -2,7 +2,7 @@
 <html lang="en">
 <style>
 	body {
-		background-color: black;
+		background-color: lightgrey;
 	}
 
 	<body>
@@ -55,7 +55,7 @@ if($_GET['login'] == "failed"){
 }
 ?>
 
-	<div class="w3-third w3-black">
+	<div class="w3-third">
 		<form action="./php/login.php">
 			<h3><u>Login</u></h3>
 
@@ -65,7 +65,7 @@ if($_GET['login'] == "failed"){
     <input type="submit" value="Login" name="login"><br>
 </form>
 </div>
-<div class="w3-third w3-black">
+<div class="w3-third ">
     <h2>- OR -</h2>
 </div>
 
@@ -89,7 +89,7 @@ if($_GET['registration'] == "failed"){
 }
 ?>
 
-<div class="w3-third w3-black">
+<div class="w3-third">
 <form action="./php/registration.php">
 
     <h3><u>Register Non-Existing User Account</u></h3>
