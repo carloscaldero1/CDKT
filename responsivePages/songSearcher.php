@@ -10,7 +10,7 @@ body {
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <center>
-<div class="w3-quarter w3-black"> 
+<div class="w3-row w3-black"> 
 
 <?php
 error_reporting(E_ALL);
@@ -157,7 +157,7 @@ elseif((!isset($_GET['searchQuery']) && isset($_SESSION['username']))){
 </table>
 </div>
 
-<div class="w3-quarter w3-black">
+<div class="w3-row w3-black">
 <?php
 
 echo '<div class="w3-quarter w3-black"> <a href="homepage.php">Homepage</a></div>';
