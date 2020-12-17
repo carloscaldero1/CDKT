@@ -74,9 +74,9 @@ if((isset($_SESSION['username']) and (!isset($_GET['profileSearch']))) or ($_SES
   </div>
 </div>
   <div class="w3-row">
-  <div class="w3-quarter">
-	<h7><u>Your Playlist</h7></u>
-  
+	<h3><u>Your Playlist</h3></u>
+  </div>
+  <div class="w3-row">
   <?php
 
 	if(isset($_GET['Add'])){
@@ -93,9 +93,7 @@ if((isset($_SESSION['username']) and (!isset($_GET['profileSearch']))) or ($_SES
 	$outputArray = retrieveProfileSongs($_SESSION['username']);
 	?>
 	</div>
-  <div class="w3-threequarter w3-dark-grey">{
-  align: left;
-}
+  <div class="w3-row w3-dark-grey">
 	<table border=2>
 	
 	<tr>
@@ -136,17 +134,15 @@ if((isset($_SESSION['username']) and (!isset($_GET['profileSearch']))) or ($_SES
 	}
 }
 	?></table>
-  </div>
 </div>
 <div class="w3-row">
-  <div class="w3-quarter">
-	<h7><u>Songs We Think You'd Like Based on Your Playlist</u></h7>
-
+	<h3><u>Songs We Think You'd Like Based on Your Playlist</u></h3>
+  </div>
+  <div class="w3-row w3-dark-grey">
 	<?php
 	$recommendationArray = getRecommendedSongs($_SESSION['username']);
 	?>
-  </div>
-  <div class="w3-threequarter w3-dark-grey">
+  
 	<table border=2>
 
         <tr>
@@ -187,7 +183,6 @@ if((isset($_SESSION['username']) and (!isset($_GET['profileSearch']))) or ($_SES
 	?>
 		
 	</table>	
-  </div>
 </div>
 <div class="w3-row">
   
@@ -245,13 +240,12 @@ elseif(isset($_GET['profileSearch'])){
 <div class="w3-container w3-cyan">
   <h1><u>Welcome to <?php echo $_GET['username'];?>'s Profile Page</u></h1></div>
 <div class="w3-row">
-  <div class="w3-quarter">
 	<?php
-	echo "<h7><u>Below(To the right for mobile) is $userProfile's playlist.</u></h7>";
+	echo "<h3><u>Below is $userProfile's playlist.</u></h3>";
 	$outputArray = retrieveProfileSongs($_GET['username']);
         ?>
-    </div>
-    <div class="w3-threequarter w3-dark-grey">
+  </div>
+<div class="w3-row w3-dark-grey">
         <table border=2>
         <tr>
         <th>Song</th>
@@ -282,7 +276,7 @@ elseif(isset($_GET['profileSearch'])){
         }
 	
 	?></table>
-  </div>
+
 </div>
 <div class="w3-row">
   
