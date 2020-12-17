@@ -2,7 +2,7 @@
 <html>
 <style>
 body {
-  background-color: black;
+  background-color: lightgrey;
 }
 
 </style>
@@ -24,23 +24,26 @@ if(isset($_SESSION['username'])){
 	echo "Hello " . $_SESSION['username'] . ", where would you like to go?<br><br>";
 
 	?>
-<div class="w3-half w3-black">
+<div class="w3-half">
 	<form action="./checkUserExist.php">
     	Find Profile Page by Username: <input type="text" placeholder="Username" name="username"> 
 	<input type="submit" value="Search" name="profileSearch"<br>
 	</form>
 </div>   
-<div class="w3-half w3-black">
+<div class="w3-half ">
 <?php
 
 	if(isset($_GET['check'])){
 		echo "<br><b>Username does not exist. Please try again.</b><br>";
 	}
 
-	echo '<br><a href="profile.php">Your Profile</a> | ';
-	echo '<a href="songDiscovery.php">Song Discovery</a> | ';
-	echo '<a href="songSearcher.php">Song Search</a>';
-	echo '<br><br><a href="logout.php?logout">Logout</a><br>';
+	echo '<div class="w3-quarter "> <a href="homepage.php">Homepage</a></div>';
+
+	echo '<div class="w3-quarter"> <a href="songDiscovery.php">Song Discovery</a></div>';
+
+	echo '<div class="w3-quarter "><a href="songSearcher.php">Song Search</a></div>';
+
+	echo '<div class="w3-quarter"> <a href="logout.php?logout">Logout</a></div>';
 }
 else{
 	header("location:../loginPage.php");
